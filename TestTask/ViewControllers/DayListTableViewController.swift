@@ -109,7 +109,6 @@ extension DayListTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
-        
         switch category {
         case .equipment:
             if !searchText.isEmpty, let searchDay = Int(searchText) {
