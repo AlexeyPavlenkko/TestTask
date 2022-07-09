@@ -109,11 +109,11 @@ extension DayListTableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
-        filteredEquipmentLoss = DataLoader.shared.equipmentLoss
+        
         switch category {
         case .equipment:
             if !searchText.isEmpty, let searchDay = Int(searchText) {
-                filteredEquipmentLoss = filteredEquipmentLoss.filter { $0.dayOfWar == searchDay}
+                filteredEquipmentLoss = DataLoader.shared.equipmentLoss.filter { $0.dayOfWar == searchDay}
             } else {
                 filteredEquipmentLoss = DataLoader.shared.equipmentLoss
             }
