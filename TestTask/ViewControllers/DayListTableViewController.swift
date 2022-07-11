@@ -86,6 +86,7 @@ class DayListTableViewController: UITableViewController {
         guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {return nil}
         
         let dayDetailVC = DayDetailViewController(coder: coder)
+        dayDetailVC?.category = category
         switch category {
         case .personnel:
             dayDetailVC?.personnelInfo = filteredPersonnelLoss[indexPath.row]
