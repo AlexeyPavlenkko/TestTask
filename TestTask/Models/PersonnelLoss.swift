@@ -8,6 +8,30 @@
 import Foundation
 
 struct PersonnelLoss: Decodable {
+    
+    enum Unit: String, CaseIterable {
+        case personnelCount
+        case prisonerCount
+        
+        var title: String {
+            switch self {
+            case .personnelCount:
+                return "Personnel"
+            case .prisonerCount:
+                return "Prisoner of War"
+            }
+        }
+        
+        func countValue(_ personnel: PersonnelLoss) -> String {
+            switch self {
+            case .personnelCount:
+                return String(personnel.personnelCount)
+            case .prisonerCount:
+                return String(personnel.prisonerCount)
+            }
+        }
+    }
+    
     let date: Date
     let dayOfWar: Int
     let personnelCount: Int

@@ -9,7 +9,7 @@ import Foundation
 
 struct EquipmentLoss: Decodable {
     
-    enum Unit: String {
+    enum Unit: String, CaseIterable {
         case aircraft
         case helicopter
         case tank
