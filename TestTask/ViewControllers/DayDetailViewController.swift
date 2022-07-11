@@ -18,13 +18,25 @@ class DayDetailViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        
+        updateNavTitle()
     }
     
     var category: CategoryViewModel!
     var personnelInfo: PersonnelLoss?
     var equipmentInfo: EquipmentLoss?
     
-    
+ 
+    func updateNavTitle() {
+        switch category {
+        case .personnel:
+            guard let personnelInfo = personnelInfo else {return}
+            title = "Day \(personnelInfo.dayOfWar) (\(personnelInfo.date.formatted(date: .abbreviated, time: .omitted)))"
+        default:
+            guard let equipmentInfo = equipmentInfo else {return}
+            title = "Day \(equipmentInfo.dayOfWar) (\(equipmentInfo.date.formatted(date: .abbreviated, time: .omitted)))"
+        }
+    }
 }
 
 //MARK: - TableView Data Source
@@ -86,10 +98,30 @@ extension DayDetailViewController: UITableViewDataSource {
             }
         }
         
-        
+        content.textProperties.color = .secondaryBlue
+        content.secondaryTextProperties.color = .mainBlue
         cell.contentConfiguration = content
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard category == .total else { return nil }
+        
+        if section == 0 {
+            return "Personnel losses"
+        } else {
+            return "Equipment losses"
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+            header.textLabel?.textColor = .mainYellow
+            header.tintColor = .secondaryBlue
+        
+    }
+    
 }
 
 //MARK: - TableView Delegate {

@@ -152,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="F5K-aw-kMI">
-                                <rect key="frame" x="0.0" y="155" width="414" height="741"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
                                 <color key="backgroundColor" name="secondaryBlue"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DayDetailView" textLabel="W8S-at-abX" detailTextLabel="VMC-JZ-NHD" style="IBUITableViewCellStyleValue2" id="Vox-zc-9tc">
@@ -187,7 +187,7 @@
                         <color key="backgroundColor" name="secondaryBlue"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="F5K-aw-kMI" secondAttribute="bottom" id="3lB-nB-67X"/>
-                            <constraint firstItem="F5K-aw-kMI" firstAttribute="top" secondItem="opg-3V-JmU" secondAttribute="top" constant="15" id="9mT-Ll-7hC"/>
+                            <constraint firstItem="F5K-aw-kMI" firstAttribute="top" secondItem="opg-3V-JmU" secondAttribute="top" id="9mT-Ll-7hC"/>
                             <constraint firstItem="opg-3V-JmU" firstAttribute="trailing" secondItem="F5K-aw-kMI" secondAttribute="trailing" id="JCh-Gs-iUf"/>
                             <constraint firstItem="F5K-aw-kMI" firstAttribute="leading" secondItem="opg-3V-JmU" secondAttribute="leading" id="Zk2-nS-tQF"/>
                         </constraints>
