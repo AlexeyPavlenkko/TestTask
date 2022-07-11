@@ -30,6 +30,7 @@ class DayListTableViewController: UITableViewController {
 
         title = category.mainText
         navigationItem.searchController = searchController
+        navigationItem.searchController?.searchBar.placeholder = "Please enter day number"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.automaticallyShowsSearchResultsController = true
@@ -104,21 +105,27 @@ class DayListTableViewController: UITableViewController {
     
 }
 
+//MARK: - SearchControllerDelegate
 extension DayListTableViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
         switch category {
-        case .equipment:
+        case .personnel:
+            if !searchText.isEmpty, let searchDay = Int(searchText) {
+                filteredPersonnelLoss = DataLoader.shared.personnelLoss.filter { $0.dayOfWar == searchDay}
+            } else {
+                filteredPersonnelLoss = DataLoader.shared.personnelLoss
+            }
+            tableView.reloadData()
+        default:
             if !searchText.isEmpty, let searchDay = Int(searchText) {
                 filteredEquipmentLoss = DataLoader.shared.equipmentLoss.filter { $0.dayOfWar == searchDay}
             } else {
                 filteredEquipmentLoss = DataLoader.shared.equipmentLoss
             }
             tableView.reloadData()
-        default:
-            return
         }
     }
 }
