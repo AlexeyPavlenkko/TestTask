@@ -27,12 +27,75 @@ struct EquipmentLoss: Decodable {
         case cruiseMissiles
         
         var title: String {
-            rawValue
+            switch self {
+            case .aircraft, .helicopter, .tank , .drone:
+                return rawValue.capitalized
+            case .armoredPersonnelCarrier:
+                return "Armored Personnel Carrier"
+            case .fieldArtillery:
+                return "Field Artillery"
+            case .multipleRocketLauncher:
+                return "Multiple Rocket Launcher"
+            case .militaryAuto:
+                return "Military Auto"
+            case .fuelTank:
+                return "Fuel Tank"
+            case .navalShip:
+                return "Naval Ship"
+            case .antiAircraftWarfare:
+                return "Anti-aircraft warfare"
+            case .specialEquipment:
+                return "Special equipment"
+            case .mobileSRBMsystem:
+                return "Mobile SRBM System"
+            case .vehiclesAndFuelTanks:
+                return "Vehicles and Fuel Tanks"
+            case .cruiseMissiles:
+                return "Cruise Missiles"
+            }
         }
         
-        var countValue: String {
-            "10"
-//            switch
+        func countValue(_ equpment: EquipmentLoss) -> String {
+            var intValue: Int?
+            
+            switch self {
+            case .aircraft:
+                intValue = equpment.aircraft
+            case .helicopter:
+                intValue = equpment.helicopter
+            case .tank:
+                intValue = equpment.tank
+            case .armoredPersonnelCarrier:
+                intValue = equpment.armoredPersonnelCarrier
+            case .fieldArtillery:
+                intValue = equpment.fieldArtillery
+            case .multipleRocketLauncher:
+                intValue = equpment.multipleRocketLauncher
+            case .militaryAuto:
+                intValue = equpment.militaryAuto
+            case .fuelTank:
+                intValue = equpment.fuelTank
+            case .drone:
+                intValue = equpment.drone
+            case .navalShip:
+                intValue = equpment.navalShip
+            case .antiAircraftWarfare:
+                intValue = equpment.antiAircraftWarfare
+            case .specialEquipment:
+                intValue = equpment.specialEquipment
+            case .mobileSRBMsystem:
+                intValue = equpment.mobileSRBMsystem
+            case .vehiclesAndFuelTanks:
+                intValue = equpment.vehiclesAndFuelTanks
+            case .cruiseMissiles:
+                intValue = equpment.cruiseMissiles
+            }
+            
+            if let intValue = intValue {
+                return String(intValue)
+            } else {
+                return "-"
+            }
         }
     }
     
