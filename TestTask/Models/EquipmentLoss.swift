@@ -25,6 +25,7 @@ struct EquipmentLoss: Decodable {
         case mobileSRBMsystem
         case vehiclesAndFuelTanks
         case cruiseMissiles
+        case greatestLossesDirection
         
         var title: String {
             switch self {
@@ -52,6 +53,8 @@ struct EquipmentLoss: Decodable {
                 return "Vehicles and Fuel Tanks"
             case .cruiseMissiles:
                 return "Cruise Missiles"
+            case .greatestLossesDirection:
+                return "Greates Losses Direction"
             }
         }
         
@@ -89,6 +92,8 @@ struct EquipmentLoss: Decodable {
                 intValue = equpment.vehiclesAndFuelTanks
             case .cruiseMissiles:
                 intValue = equpment.cruiseMissiles
+            case .greatestLossesDirection:
+                return equpment.greatestLossesDirection ?? "-"
             }
             
             if let intValue = intValue {
@@ -116,6 +121,7 @@ struct EquipmentLoss: Decodable {
     let mobileSRBMsystem: Int?
     let vehiclesAndFuelTanks: Int?
     let cruiseMissiles: Int?
+    let greatestLossesDirection: String?
     
     enum CodingKeys: String, CodingKey {
         case date
@@ -135,6 +141,7 @@ struct EquipmentLoss: Decodable {
         case mobileSRBMsystem = "mobile SRBM system"
         case vehiclesAndFuelTanks = "vehicles and fuel tanks"
         case cruiseMissiles = "cruise missiles"
+        case greatestLossesDirection = "greatest losses direction"
     }
     
     init(from decoder: Decoder) throws {
@@ -162,5 +169,6 @@ struct EquipmentLoss: Decodable {
         self.mobileSRBMsystem = try? container.decode(Int.self, forKey: .mobileSRBMsystem)
         self.vehiclesAndFuelTanks = try? container.decode(Int.self, forKey: .vehiclesAndFuelTanks)
         self.cruiseMissiles = try? container.decode(Int.self, forKey: .cruiseMissiles)
+        self.greatestLossesDirection = try? container.decode(String.self, forKey: .greatestLossesDirection)
     }
 }
