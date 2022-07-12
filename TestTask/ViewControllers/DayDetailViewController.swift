@@ -31,10 +31,10 @@ class DayDetailViewController: UIViewController {
         switch category {
         case .personnel:
             guard let personnelInfo = personnelInfo else {return}
-            title = "Day \(personnelInfo.dayOfWar) (\(personnelInfo.date.formatted(date: .abbreviated, time: .omitted)))"
+            title = "Day \(personnelInfo.dayOfWar) (\(personnelInfo.date.formatted(date: .numeric, time: .omitted)))"
         default:
             guard let equipmentInfo = equipmentInfo else {return}
-            title = "Day \(equipmentInfo.dayOfWar) (\(equipmentInfo.date.formatted(date: .abbreviated, time: .omitted)))"
+            title = "Day \(equipmentInfo.dayOfWar) (\(equipmentInfo.date.formatted(date: .numeric, time: .omitted)))"
         }
     }
 }
@@ -68,6 +68,7 @@ extension DayDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath)
+        cell.selectionStyle = .none
         
         var content = cell.defaultContentConfiguration()
         
@@ -115,6 +116,11 @@ extension DayDetailViewController: UITableViewDataSource {
         }
     }
     
+}
+
+//MARK: - TableView Delegate
+extension DayDetailViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
             header.textLabel?.textColor = .mainYellow
@@ -122,11 +128,4 @@ extension DayDetailViewController: UITableViewDataSource {
         
     }
     
-}
-
-//MARK: - TableView Delegate {
-extension DayDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 }

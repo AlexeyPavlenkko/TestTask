@@ -29,6 +29,10 @@ class DayListTableViewController: UITableViewController {
         super.viewDidLoad()
 
         title = category.mainText
+        configNavigationSearchController()
+    }
+
+    private func configNavigationSearchController() {
         navigationItem.searchController = searchController
         navigationItem.searchController?.searchBar.placeholder = "Please enter day number"
         searchController.searchResultsUpdater = self
@@ -36,20 +40,15 @@ class DayListTableViewController: UITableViewController {
         searchController.automaticallyShowsSearchResultsController = true
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
     // MARK: - TableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch category {
         case .personnel:
             return filteredPersonnelLoss.count
         default:
             return filteredEquipmentLoss.count
         }
-
     }
 
     
@@ -62,11 +61,11 @@ class DayListTableViewController: UITableViewController {
         case .personnel:
             let personnelLossInfo = filteredPersonnelLoss[indexPath.row]
             content.text = "Day \(personnelLossInfo.dayOfWar)"
-            content.secondaryText = personnelLossInfo.date.formatted(date: .abbreviated, time: .omitted)
+            content.secondaryText = personnelLossInfo.date.formatted(date: .numeric, time: .omitted)
         default:
             let equipmentLossInfo = filteredEquipmentLoss[indexPath.row]
             content.text = "Day \(equipmentLossInfo.dayOfWar)"
-            content.secondaryText = equipmentLossInfo.date.formatted(date: .abbreviated, time: .omitted)
+            content.secondaryText = equipmentLossInfo.date.formatted(date: .numeric, time: .omitted)
         }
 
         content.textProperties.color = UIColor.secondaryBlue
@@ -76,9 +75,6 @@ class DayListTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: - TableViewDelegate
-    
-   
     //MARK: - Segue
     
     @IBSegueAction func showDayDetailVC(_ coder: NSCoder, sender: Any?) -> DayDetailViewController? {

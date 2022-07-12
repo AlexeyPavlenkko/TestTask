@@ -17,10 +17,6 @@ class CategoryCollectionViewController: UICollectionViewController {
         collectionView.collectionViewLayout = createLayout()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.darkContent
-    }
-
     // MARK: - UICollectionViewCompositionalLayout
     
     func createLayout() -> UICollectionViewCompositionalLayout {
@@ -42,13 +38,13 @@ class CategoryCollectionViewController: UICollectionViewController {
     // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+        
         return CategoryViewModel.allCases.count
     }
 
@@ -58,7 +54,7 @@ class CategoryCollectionViewController: UICollectionViewController {
         let categoryModel = CategoryViewModel.allCases[indexPath.item]
         
         cell.configure(with: categoryModel)
-        cell.imageView.layer.cornerRadius = 20 //cell.imageView.frame.height/2
+        cell.imageView.layer.cornerRadius = 20
         cell.layer.cornerRadius = 20
         
         return cell
