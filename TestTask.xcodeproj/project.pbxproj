@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E80332E4287620D800E3D135 /* russia_losses_personnel.json in Resources */ = {isa = PBXBuildFile; fileRef = E80332E3287620D800E3D135 /* russia_losses_personnel.json */; };
 		E80332E9287625B400E3D135 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80332E8287625B400E3D135 /* DataLoader.swift */; };
 		E80A69FD28773C3B0082CC70 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80A69FC28773C3B0082CC70 /* UIColor+.swift */; };
-		E81B80F32879836C00C2583D /* russia_losses_equipment.json in Resources */ = {isa = PBXBuildFile; fileRef = E81B80F22879836C00C2583D /* russia_losses_equipment.json */; };
 		E85D15362875BE2800BA5510 /* CategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D15352875BE2800BA5510 /* CategoryCollectionViewController.swift */; };
 		E85D15382875BE6F00BA5510 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D15372875BE6F00BA5510 /* CategoryCollectionViewCell.swift */; };
 		E85D153A2875D35B00BA5510 /* DayListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D15392875D35B00BA5510 /* DayListTableViewController.swift */; };
@@ -26,10 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E80332E3287620D800E3D135 /* russia_losses_personnel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = russia_losses_personnel.json; sourceTree = "<group>"; };
 		E80332E8287625B400E3D135 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		E80A69FC28773C3B0082CC70 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-		E81B80F22879836C00C2583D /* russia_losses_equipment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = russia_losses_equipment.json; sourceTree = "<group>"; };
 		E85D15352875BE2800BA5510 /* CategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		E85D15372875BE6F00BA5510 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		E85D15392875D35B00BA5510 /* DayListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayListTableViewController.swift; sourceTree = "<group>"; };
@@ -57,15 +53,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E80332E72876211900E3D135 /* JSONdata */ = {
-			isa = PBXGroup;
-			children = (
-				E81B80F22879836C00C2583D /* russia_losses_equipment.json */,
-				E80332E3287620D800E3D135 /* russia_losses_personnel.json */,
-			);
-			path = JSONdata;
-			sourceTree = "<group>";
-		};
 		E8BA8F57287336EB007B0143 = {
 			isa = PBXGroup;
 			children = (
@@ -89,7 +76,6 @@
 				E8BA8F65287336EB007B0143 /* SceneDelegate.swift */,
 				E80332E8287625B400E3D135 /* DataLoader.swift */,
 				E80A69FC28773C3B0082CC70 /* UIColor+.swift */,
-				E80332E72876211900E3D135 /* JSONdata */,
 				E8BA8F77287336FF007B0143 /* Models */,
 				E8C7B3EE28746FC10059B67D /* Views */,
 				E8C7B3ED28746F920059B67D /* ViewControllers */,
@@ -195,8 +181,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E80332E4287620D800E3D135 /* russia_losses_personnel.json in Resources */,
-				E81B80F32879836C00C2583D /* russia_losses_equipment.json in Resources */,
 				E8BA8F70287336EC007B0143 /* LaunchScreen.storyboard in Resources */,
 				E8BA8F6D287336EC007B0143 /* Assets.xcassets in Resources */,
 				E8BA8F6B287336EB007B0143 /* Main.storyboard in Resources */,

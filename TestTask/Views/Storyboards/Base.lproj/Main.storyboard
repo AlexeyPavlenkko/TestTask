@@ -138,8 +138,12 @@
                     <navigationItem key="navigationItem" title="Root View Controller" largeTitleDisplayMode="never" id="bHk-Wr-5CA">
                         <barButtonItem key="backBarButtonItem" title=" " id="svF-eP-Xe5"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="SW9-Yj-OKp" kind="unwind" identifier="returnToHomeScreen" unwindAction="unwindToHomeScreenWithSegue:" id="u4u-8Z-7Sq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1L-PJ-9KB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="SW9-Yj-OKp" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1536" y="-2"/>
         </scene>

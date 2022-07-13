@@ -13,8 +13,17 @@ class DayListTableViewController: UITableViewController {
 
     var category: CategoryViewModel
     let searchController = UISearchController()
-    var filteredEquipmentLoss: [EquipmentLoss] = DataLoader.shared.equipmentLoss
-    var filteredPersonnelLoss: [PersonnelLoss] = DataLoader.shared.personnelLoss
+    
+    var filteredEquipmentLoss: [EquipmentLoss] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    var filteredPersonnelLoss: [PersonnelLoss] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     init?(coder: NSCoder, category: CategoryViewModel) {
         self.category = category
@@ -28,18 +37,66 @@ class DayListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadData()
         title = category.mainText
         configNavigationSearchController()
     }
-
+    
     private func configNavigationSearchController() {
         navigationItem.searchController = searchController
         navigationItem.searchController?.searchBar.placeholder = "Please enter day number"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.automaticallyShowsSearchResultsController = true
+        let textFieldInsideSearchBar = navigationItem.searchController?.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.textColor = .mainYellow
     }
-
+    
+    private func loadData() {
+        switch category {
+        case .personnel:
+            Task.init {
+                do {
+                    try await DataLoader.shared.loadPersonnelLossData()
+                    filteredPersonnelLoss = DataLoader.shared.personnelLoss
+                } catch {
+                    showErrorAlert(with: error)
+                }
+            }
+        case .equipment:
+            Task.init {
+                do {
+                    try await DataLoader.shared.loadEquipmentLossData()
+                    filteredEquipmentLoss = DataLoader.shared.equipmentLoss
+                } catch {
+                    showErrorAlert(with: error)
+                }
+            }
+        case .total:
+            Task.init {
+                do {
+                    try await DataLoader.shared.loadPersonnelLossData()
+                    try await DataLoader.shared.loadEquipmentLossData()
+                    filteredEquipmentLoss = DataLoader.shared.equipmentLoss
+                    filteredPersonnelLoss = DataLoader.shared.personnelLoss
+                } catch {
+                    showErrorAlert(with: error)
+                }
+            }
+        }
+        
+    }
+    
+    private func showErrorAlert(with error: Error) {
+        let errorAlert = UIAlertController(title: "Oooops!", message: error.localizedDescription, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel) { action in
+            self.performSegue(withIdentifier: "returnToHomeScreen", sender: nil)
+        }
+        errorAlert.addAction(okAction)
+        
+        self.present(errorAlert, animated: true)
+    }
+    
     // MARK: - TableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,11 +118,11 @@ class DayListTableViewController: UITableViewController {
         case .personnel:
             let personnelLossInfo = filteredPersonnelLoss[indexPath.row]
             content.text = "Day \(personnelLossInfo.dayOfWar)"
-            content.secondaryText = personnelLossInfo.date.formatted(date: .numeric, time: .omitted)
+            content.secondaryText = personnelLossInfo.date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits))
         default:
             let equipmentLossInfo = filteredEquipmentLoss[indexPath.row]
             content.text = "Day \(equipmentLossInfo.dayOfWar)"
-            content.secondaryText = equipmentLossInfo.date.formatted(date: .numeric, time: .omitted)
+            content.secondaryText = equipmentLossInfo.date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits))
         }
 
         content.textProperties.color = UIColor.secondaryBlue
@@ -115,14 +172,12 @@ extension DayListTableViewController: UISearchResultsUpdating {
             } else {
                 filteredPersonnelLoss = DataLoader.shared.personnelLoss
             }
-            tableView.reloadData()
         default:
             if !searchText.isEmpty, let searchDay = Int(searchText) {
                 filteredEquipmentLoss = DataLoader.shared.equipmentLoss.filter { $0.dayOfWar == searchDay}
             } else {
                 filteredEquipmentLoss = DataLoader.shared.equipmentLoss
             }
-            tableView.reloadData()
         }
     }
 }

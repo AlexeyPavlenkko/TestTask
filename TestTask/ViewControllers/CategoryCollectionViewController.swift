@@ -71,4 +71,8 @@ class CategoryCollectionViewController: UICollectionViewController {
         
     }
     
+    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue) {
+        
+    }
+    
 }

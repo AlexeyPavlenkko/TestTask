@@ -31,10 +31,10 @@ class DayDetailViewController: UIViewController {
         switch category {
         case .personnel:
             guard let personnelInfo = personnelInfo else {return}
-            title = "Day \(personnelInfo.dayOfWar) (\(personnelInfo.date.formatted(date: .numeric, time: .omitted)))"
+            title = "Day \(personnelInfo.dayOfWar) (\(personnelInfo.date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits))))"
         default:
             guard let equipmentInfo = equipmentInfo else {return}
-            title = "Day \(equipmentInfo.dayOfWar) (\(equipmentInfo.date.formatted(date: .numeric, time: .omitted)))"
+            title = "Day \(equipmentInfo.dayOfWar) (\(equipmentInfo.date.formatted(.dateTime.year().month(.twoDigits).day(.twoDigits))))"
         }
     }
 }
