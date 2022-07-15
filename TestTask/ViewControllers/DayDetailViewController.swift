@@ -27,7 +27,7 @@ class DayDetailViewController: UIViewController {
     var equipmentInfo: EquipmentLoss?
     
  
-    func updateNavTitle() {
+    private func updateNavTitle() {
         switch category {
         case .personnel:
             guard let personnelInfo = personnelInfo else {return}

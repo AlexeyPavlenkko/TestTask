@@ -19,7 +19,7 @@ class CategoryCollectionViewController: UICollectionViewController {
     
     // MARK: - UICollectionViewCompositionalLayout
     
-    func createLayout() -> UICollectionViewCompositionalLayout {
+    private func createLayout() -> UICollectionViewCompositionalLayout {
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)

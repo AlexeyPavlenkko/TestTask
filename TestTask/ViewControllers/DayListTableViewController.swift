@@ -12,14 +12,14 @@ private let reuseIdentifier = "DayCell"
 class DayListTableViewController: UITableViewController {
 
     var category: CategoryViewModel
-    let searchController = UISearchController()
+    private let searchController = UISearchController()
     
-    var filteredEquipmentLoss: [EquipmentLoss] = [] {
+    private var filteredEquipmentLoss: [EquipmentLoss] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    var filteredPersonnelLoss: [PersonnelLoss] = [] {
+    private var filteredPersonnelLoss: [PersonnelLoss] = [] {
         didSet {
             tableView.reloadData()
         }
