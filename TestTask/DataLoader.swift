@@ -32,9 +32,7 @@ class DataLoader {
     
     private let personnelStringURL = "https://raw.githubusercontent.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_personnel.json"
     private let equipmentStringURL = "https://raw.githubusercontent.com/PetroIvaniuk/2022-Ukraine-Russia-War-Dataset/main/data/russia_losses_equipment.json"
-    
-    init() { }
-    
+
     var personnelLoss = [PersonnelLoss]()
     var equipmentLoss = [EquipmentLoss]()
     
@@ -43,7 +41,6 @@ class DataLoader {
         dateFrmt.dateFormat = "yyyy-MM-dd"
         return dateFrmt
     }()
-    
     
     func loadPersonnelLossData() async throws {
         guard let url = URL(string: personnelStringURL) else { throw DataLoaderError.urlNotValid }
@@ -60,7 +57,6 @@ class DataLoader {
         
         self.personnelLoss = personnelLosses
     }
-    
     
     func loadEquipmentLossData() async throws {
         guard let url = URL(string: equipmentStringURL) else { throw DataLoaderError.urlNotValid }
