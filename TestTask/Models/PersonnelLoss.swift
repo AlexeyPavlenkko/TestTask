@@ -27,7 +27,11 @@ struct PersonnelLoss: Decodable {
             case .personnelCount:
                 return String(personnel.personnelCount)
             case .prisonerCount:
-                return String(personnel.prisonerCount)
+                if let prisonerCount = personnel.prisonerCount {
+                    return String(prisonerCount)
+                } else {
+                    return "-"
+                }
             }
         }
     }
@@ -35,7 +39,7 @@ struct PersonnelLoss: Decodable {
     let date: Date
     let dayOfWar: Int
     let personnelCount: Int
-    let prisonerCount: Int
+    let prisonerCount: Int?
     
     enum CodingKeys: String, CodingKey {
         case date = "date"
