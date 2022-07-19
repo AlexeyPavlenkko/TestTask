@@ -44,7 +44,7 @@ class DayListTableViewController: UITableViewController {
     
     private func configNavigationSearchController() {
         navigationItem.searchController = searchController
-        navigationItem.searchController?.searchBar.placeholder = "Please enter day number"
+        navigationItem.searchController?.searchBar.placeholder = "Please enter the day number"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.automaticallyShowsSearchResultsController = true
